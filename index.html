@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1a0e0d">
+<meta name="theme-color" content="#0c1a22">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Focus Log</title>
 <style>
   :root {
-    /* Palette: Tropical Tan / Funchal Yellow / Saffronaut / Hull Red / Nero */
-    --bg: #1a0e0d;            /* deep Hull Red base */
-    --card: #2b1413;          /* Hull Red, lifted */
-    --card-2: #221110;
-    --line: #4d1211;          /* Hull Red */
-    --line-soft: #3a1413;
-    --accent: #942b2b;        /* Saffronaut */
-    --accent-hover: #b03636;
-    --text: #f0e2d4;          /* warm off-white */
-    --dim: #cbb291;           /* Tropical Tan */
-    --mute: #8f7358;
-    --fill: #b78a4e;          /* Funchal Yellow */
+    /* Palette: Merino / Rock Blue / Venice Blue */
+    --bg: #0c1a22;            /* Venice Blue, deepened for dark mode */
+    --card: #132c3a;
+    --card-2: #0f232e;
+    --line: #16587b;          /* Venice Blue */
+    --line-soft: #14405a;
+    --accent: #16587b;        /* Venice Blue */
+    --accent-hover: #1d6f99;
+    --text: #f5eedd;          /* Merino */
+    --dim: #84b3ce;           /* Rock Blue */
+    --mute: #5d8298;
+    --fill: #84b3ce;          /* Rock Blue */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
@@ -31,7 +31,7 @@
 
   .wrap { min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 1.5rem 1rem; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.6rem 1.5rem 1.2rem; width: 100%; max-width: 400px; text-align: center; transition: box-shadow .4s; }
-  .card.pulse { box-shadow: 0 0 0 4px rgba(183,138,78,.5); }
+  .card.pulse { box-shadow: 0 0 0 4px rgba(132,179,206,.5); }
 
   .tabs { display: flex; gap: 6px; background: var(--card-2); border-radius: 12px; padding: 5px; margin-bottom: 1.4rem; }
   .tab { flex: 1; padding: 8px 4px; font-size: 14px; font-weight: 500; border: none; border-radius: 9px; cursor: pointer; background: transparent; color: var(--mute); transition: background .15s, color .15s; }
@@ -39,7 +39,7 @@
 
   .durations { display: flex; gap: 8px; justify-content: center; }
   .dur { padding: 8px 0; flex: 1; font-size: 14px; font-weight: 500; border: 1px solid var(--line); border-radius: 9px; cursor: pointer; background: transparent; color: var(--mute); transition: background .15s, color .15s; }
-  .dur.active { background: var(--line); color: #f0e2d4; }
+  .dur.active { background: var(--line); color: #f5eedd; }
   .dur:hover:not(.active) { background: var(--card-2); color: var(--dim); }
 
   .display { margin: 2rem 0 1.4rem; }
@@ -52,10 +52,10 @@
   .main { padding: 13px 0; flex: 1; max-width: 200px; font-size: 15px; font-weight: 500; border: none; border-radius: 11px; cursor: pointer; background: var(--accent); color: #fff; transition: background .15s; }
   .main:hover { background: var(--accent-hover); }
   .icon { width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; background: transparent; color: var(--dim); font-size: 18px; display: flex; align-items: center; justify-content: center; transition: background .15s, color .15s; }
-  .icon:hover { background: var(--card-2); color: #f0e2d4; }
+  .icon:hover { background: var(--card-2); color: #f5eedd; }
   .icon[hidden] { display: none; }
   .end { margin-top: 14px; padding: 9px 18px; font-size: 13px; border: 1px solid var(--line); border-radius: 9px; cursor: pointer; background: transparent; color: var(--dim); transition: background .15s, color .15s; }
-  .end:hover { background: var(--card-2); color: #f0e2d4; }
+  .end:hover { background: var(--card-2); color: #f5eedd; }
   .end[hidden] { display: none; }
 
   .thought { display: flex; gap: 8px; margin-top: 1.4rem; }
@@ -63,15 +63,15 @@
   .thought input::placeholder { color: var(--mute); }
   .thought input:focus { border-color: var(--accent); }
   .thought button { padding: 0 14px; font-size: 14px; border: 1px solid var(--line); border-radius: 9px; cursor: pointer; background: transparent; color: var(--dim); }
-  .thought button:hover { background: var(--card-2); color: #f0e2d4; }
+  .thought button:hover { background: var(--card-2); color: #f5eedd; }
 
   .today { margin-top: 1.4rem; padding-top: 1.1rem; border-top: 1px solid var(--line-soft); font-size: 13px; color: var(--mute); }
   .foot { margin-top: .8rem; display: flex; justify-content: center; gap: 4px; }
-  .foot button { background: none; border: none; font-size: 12px; color: #7a5a45; cursor: pointer; padding: 6px 8px; }
+  .foot button { background: none; border: none; font-size: 12px; color: #4a7186; cursor: pointer; padding: 6px 8px; }
   .foot button:hover { color: var(--dim); }
 
   /* overlays */
-  .ov { display: none; position: fixed; inset: 0; background: rgba(26,14,13,.94); z-index: 90; align-items: center; justify-content: center; padding: 1.5rem 1rem; }
+  .ov { display: none; position: fixed; inset: 0; background: rgba(12,26,34,.94); z-index: 90; align-items: center; justify-content: center; padding: 1.5rem 1rem; }
   .ov.open { display: flex; }
   .ov-card { width: 100%; max-width: 400px; max-height: 82vh; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.4rem 1.3rem; display: flex; flex-direction: column; }
   .ov h3 { font-size: 16px; font-weight: 500; margin-bottom: .4rem; color: #fff; }
@@ -81,10 +81,10 @@
   .ov li span { flex: 1; word-break: break-word; }
   .ov li small { color: var(--mute); font-size: 12px; white-space: nowrap; }
   .ov li button { background: none; border: none; color: var(--mute); cursor: pointer; font-size: 16px; padding: 0 2px; }
-  .ov li button:hover { color: #f0e2d4; }
+  .ov li button:hover { color: #f5eedd; }
   .ov-actions { display: flex; gap: 10px; }
   .ov-actions button { flex: 1; padding: 11px; font-size: 14px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; background: transparent; color: var(--dim); }
-  .ov-actions button:hover { background: var(--card-2); color: #f0e2d4; }
+  .ov-actions button:hover { background: var(--card-2); color: #f5eedd; }
 
   /* check-in */
   .ci { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 100; align-items: center; justify-content: center; padding: 1.5rem 1rem; overflow-y: auto; }
@@ -115,7 +115,7 @@
   .skip { background: none; border: none; font-size: 14px; color: var(--mute); cursor: pointer; padding: 8px 14px; }
   .skip:hover { color: var(--dim); }
 
-  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); background: #3a1413; color: #f0e2d4; border: 1px solid var(--line); padding: 11px 18px; border-radius: 10px; font-size: 14px; opacity: 0; transition: opacity .25s, transform .25s; pointer-events: none; z-index: 200; max-width: 90vw; text-align: center; }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); background: #14405a; color: #f5eedd; border: 1px solid var(--line); padding: 11px 18px; border-radius: 10px; font-size: 14px; opacity: 0; transition: opacity .25s, transform .25s; pointer-events: none; z-index: 200; max-width: 90vw; text-align: center; }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .flash { position: fixed; inset: 0; background: #fff; z-index: 300; pointer-events: none; opacity: 0; }
   .flash.on { opacity: 1; }
